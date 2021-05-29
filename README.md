@@ -1,35 +1,53 @@
-# Train CIFAR10 with PyTorch
+# Procrustes ResNet: ResNet with Norm-Preserving Transition Blocks
+Pytorch Implementation of Procrustes ResNet (ProcResNet) proposed in: 
 
-I'm playing with [PyTorch](http://pytorch.org/) on the CIFAR10 dataset.
+Zaeemzadeh, Alireza, Nazanin Rahnavard, and Mubarak Shah. 
+"Norm-Preservation: Why Residual Networks Can Become Extremely Deep?." 
+IEEE Transactions on Pattern Analysis and Machine Intelligence (PAMI) 2020 
+[link](https://ieeexplore.ieee.org/abstract/document/9079218)
 
-## Prerequisites
-- Python 3.6+
-- PyTorch 1.0+
+**Note:** For the original impementation using [Chainer](https://chainer.org/), see [here](https://github.com/zaeemzadeh/ProcResNet).
 
-## Training
+
+## Requirements
+
+Tested on:
+- Python 3.9.2
+- cuda 11.2
+- torch 1.8.1
+- torchvision 0.9.1
+
+## Quick Start
+
+```bash
+python main.py --model_file 'models/procresnet.py' --model_name 'ProcResNet166' --regul_freq 0.5 --batchsize 128 --training_epoch 300 --lr_decay_epoch 150 225 --initial_lr 0.1 
 ```
-# Start training with: 
-python main.py
 
-# You can manually resume the training with: 
-python main.py --resume --lr=0.01
+'regul_freq' is a number in range [0, 1] and determines how often the regularization is performed.
+
+## About Regularization of the Conv Layers
+The ProcResNet class has a method called 'regularize_convs', which is called after gradient descent update to enforce norm-preservation on the transition blocks.
+
+See the details at `regularize_convs` function in `models/procresnet.py`.
+
+Gradient norm ratio for ResNet (top) and ProcResNet (bottom):
+
+<img src="https://github.com/zaeemzadeh/ProcResNet/blob/master/imgs/animated.gif" width="480">
+
+
+
+
+## Citing This Work
+If you find this work useful, please use the following BibTeX entry.
+```
+@article{zaeemzadeh2018norm,
+  title={Norm-Preservation: Why Residual Networks Can Become Extremely Deep?},
+  author={Zaeemzadeh, Alireza and Rahnavard, Nazanin and Shah, Mubarak},
+  journal = {Pattern Analysis and Machine Intelligence, IEEE Transactions on},
+  year = {2020}
+}
+
 ```
 
-## Accuracy
-| Model             | Acc.        |
-| ----------------- | ----------- |
-| [VGG16](https://arxiv.org/abs/1409.1556)              | 92.64%      |
-| [ResNet18](https://arxiv.org/abs/1512.03385)          | 93.02%      |
-| [ResNet50](https://arxiv.org/abs/1512.03385)          | 93.62%      |
-| [ResNet101](https://arxiv.org/abs/1512.03385)         | 93.75%      |
-| [RegNetX_200MF](https://arxiv.org/abs/2003.13678)     | 94.24%      |
-| [RegNetY_400MF](https://arxiv.org/abs/2003.13678)     | 94.29%      |
-| [MobileNetV2](https://arxiv.org/abs/1801.04381)       | 94.43%      |
-| [ResNeXt29(32x4d)](https://arxiv.org/abs/1611.05431)  | 94.73%      |
-| [ResNeXt29(2x64d)](https://arxiv.org/abs/1611.05431)  | 94.82%      |
-| [SimpleDLA](https://arxiv.org/abs/1707.064)           | 94.89%      |
-| [DenseNet121](https://arxiv.org/abs/1608.06993)       | 95.04%      |
-| [PreActResNet18](https://arxiv.org/abs/1603.05027)    | 95.11%      |
-| [DPN92](https://arxiv.org/abs/1707.01629)             | 95.16%      |
-| [DLA](https://arxiv.org/abs/1707.064)                 | 95.47%      |
+
 
