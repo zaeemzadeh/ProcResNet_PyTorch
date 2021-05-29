@@ -6,7 +6,7 @@ Zaeemzadeh, Alireza, Nazanin Rahnavard, and Mubarak Shah.
 IEEE Transactions on Pattern Analysis and Machine Intelligence (PAMI) 2020 
 [link](https://arxiv.org/pdf/1805.07477.pdf)
 
-**Note:** For the original impementation using [Chainer](https://chainer.org/), see [here](https://github.com/zaeemzadeh/ProcResNet).
+- **Note:** For the original impementation using [Chainer](https://chainer.org/), see [here](https://github.com/zaeemzadeh/ProcResNet).
 
 
 ## Requirements
@@ -16,6 +16,7 @@ Tested on:
 - cuda 11.2
 - torch 1.8.1
 - torchvision 0.9.1
+- numpy 1.20.1
 
 ## Quick Start
 
