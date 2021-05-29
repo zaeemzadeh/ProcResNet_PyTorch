@@ -136,7 +136,7 @@ print('==> Building model..')
 ext = os.path.splitext(args.model_file)[1]
 mod_path = '.'.join(os.path.split(args.model_file.replace(ext, '')))
 mod = import_module(mod_path)
-net = getattr(mod, args.model_name)()
+net = getattr(mod, args.model_name)(args.dataset == 'cifar10' and 10 or 100)
 net = net.to(device)
 
 print('Number of parameters: ', count_parameters(net)/1e6, 'M')
