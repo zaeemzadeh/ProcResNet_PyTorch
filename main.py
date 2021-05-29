@@ -9,6 +9,7 @@ from importlib import import_module
 
 import torchvision
 import torchvision.transforms as transforms
+import torchvision.datasets as datasets
 import inspect
 
 import os
@@ -78,9 +79,10 @@ def test(epoch):
         best_acc = acc
 
 
-parser = argparse.ArgumentParser(description='PyTorch CIFAR10 Training')
+parser = argparse.ArgumentParser(description='PyTorch CIFAR Training')
 parser.add_argument('--model_file', type=str, default='models/procresnet.py')
 parser.add_argument('--model_name', type=str, default='ProcResNet166')
+parser.add_argument('--dataset', type=str, default='cifar10')
 parser.add_argument('--regul_freq', type=float, default=0.5)
 # Train settings
 parser.add_argument('--batchsize', type=int, default=128)  
@@ -101,6 +103,7 @@ print('==> Preparing data..')
 normalize = transforms.Normalize(mean=[x/255.0 for x in [125.3, 123.0, 113.9]],
                                  std=[x/255.0 for x in [63.0, 62.1, 66.7]])
 
+
 transform_train = transforms.Compose([
     transforms.ToTensor(),
     transforms.Lambda(lambda x: F.pad(
@@ -117,18 +120,16 @@ transform_test = transforms.Compose([
     normalize
     ])
 
-trainset = torchvision.datasets.CIFAR10(
-    root='./data', train=True, download=True, transform=transform_train)
+
+kwargs = {'num_workers': 1, 'pin_memory': True}
+assert(args.dataset == 'cifar10' or args.dataset == 'cifar100')
 trainloader = torch.utils.data.DataLoader(
-    trainset, batch_size=args.batchsize, shuffle=True, num_workers=2)
-
-testset = torchvision.datasets.CIFAR10(
-    root='./data', train=False, download=True, transform=transform_test)
+    datasets.__dict__[args.dataset.upper()]('./data', train=True, download=True,
+                        transform=transform_train),
+    batch_size=args.batchsize, shuffle=True, **kwargs)
 testloader = torch.utils.data.DataLoader(
-    testset, batch_size=args.batchsize, shuffle=False, num_workers=2)
-
-classes = ('plane', 'car', 'bird', 'cat', 'deer',
-           'dog', 'frog', 'horse', 'ship', 'truck')
+    datasets.__dict__[args.dataset.upper()]('./data', train=False, transform=transform_test),
+    batch_size=args.batchsize, shuffle=True, **kwargs)
 
 # Model
 print('==> Building model..')
