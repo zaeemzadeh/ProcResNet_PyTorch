@@ -1,5 +1,5 @@
 # Procrustes ResNet: ResNet with Norm-Preserving Transition Blocks
-Pytorch Implementation of Procrustes ResNet (ProcResNet) proposed in: 
+Pytorch implementation of Procrustes ResNet (ProcResNet) proposed in: 
 
 Zaeemzadeh, Alireza, Nazanin Rahnavard, and Mubarak Shah. 
 "Norm-Preservation: Why Residual Networks Can Become Extremely Deep?." 
