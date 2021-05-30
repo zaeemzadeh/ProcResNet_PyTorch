@@ -34,7 +34,7 @@ python main.py --model_file 'models/procresnet.py' --model_name 'ProcResNet274' 
 python main.py --model_file 'models/resnet.py'     --model_name 'ResNet272'     --dataset 'cifar100'
 ```
 
-'regul_freq' is a number in range [0, 1] and determines how often the regularization is performed.
+'regul_freq' is a number in range [0, 1] and determines how often the regularization is performed (Default: 0.5).
 
 ## About Regularization of the Conv Layers
 The ProcResNet class has a method called 'regularize_convs', which is called after gradient descent update to enforce norm-preservation on the transition blocks.
