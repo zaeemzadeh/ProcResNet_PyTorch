@@ -20,8 +20,18 @@ Tested on:
 
 ## Quick Start
 
+Sample commands:
+
 ```bash
 python main.py --model_file 'models/procresnet.py' --model_name 'ProcResNet166' --regul_freq 0.5 --batchsize 128 --training_epoch 300 --lr_decay_epoch 150 225 --initial_lr 0.1 --dataset 'cifar10'
+
+python main.py --model_file 'models/procresnet.py' --model_name 'ProcResNet274' --dataset 'cifar10'
+
+python main.py --model_file 'models/resnet.py'     --model_name 'ResNet272'     --dataset 'cifar10'
+
+python main.py --model_file 'models/procresnet.py' --model_name 'ProcResNet274' --dataset 'cifar100'
+
+python main.py --model_file 'models/resnet.py'     --model_name 'ResNet272'     --dataset 'cifar100'
 ```
 
 'regul_freq' is a number in range [0, 1] and determines how often the regularization is performed.
