@@ -52,8 +52,10 @@ Gradient norm ratio for ResNet (top) and ProcResNet (bottom):
 |:-------------|--------:|--------:|--------------------:|
 | ResNet       |     272 |   2.82M |            4.73     |
 | ResNet       |     632 |   6.52M |            4.59     |
+| ResNet       |    1001 |  10.32M |            4.52     |
 | ProcResNet   |     274 |   2.83M |            4.20     |
 | ProcResNet   |     634 |   6.53M |            3.78     |
+| ProcResNet   |    1003 |  10.33M |            3.84     |
 
 
 ## Citing This Work
